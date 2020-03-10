@@ -12,31 +12,31 @@ if ENV['SEED_EVENTS'] == 'true'
   # # departments = [01, 03, 07, 38, 42, 63, 69, 73, 74, 75, 92]
 
 
-   departments1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  departments2 = (10..95).to_a
-  departments = departments1 + departments2
-  departments.delete(26)
-  departments.delete(66)
-  # departments.delete(75)
-  departments.delete(92)
+  #  departments1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  # departments2 = (10..95).to_a
+  # departments = departments1 + departments2
+  # departments.delete(26)
+  # departments.delete(66)
+  # # departments.delete(75)
+  # departments.delete(92)
 
-  # departments = [69]
-  # departments = [01, 03, 07, 38, 42, 63, 69, 73, 74, 75, 92]
-  departments.each do |department|
-    department < 10 ? content = File.read("#{Rails.root}/db/events0#{department}.json") : content = File.read("#{Rails.root}/db/events#{department}.json")
-    events = JSON.parse(content)
+  # # departments = [69]
+  # # departments = [01, 03, 07, 38, 42, 63, 69, 73, 74, 75, 92]
+  # departments.each do |department|
+  #   department < 10 ? content = File.read("#{Rails.root}/db/events0#{department}.json") : content = File.read("#{Rails.root}/db/events#{department}.json")
+  #   events = JSON.parse(content)
+  #   events.each do |event|
+  #     Event.create!(event)
+  #   end
+  # end
+  bar_json = [1, 2, 3, 4]
+bar_json.each do |fichier|
+    content = File.read("#{Rails.root}/db/eventsbars2#{fichier}.json")
+        events = JSON.parse(content)
     events.each do |event|
       Event.create!(event)
     end
   end
-#   bar_json = [1, 2, 3, 4]
-# bar_json.each do |fichier|
-#     content = File.read("#{Rails.root}/db/eventsbars2#{fichier}.json")
-#         events = JSON.parse(content)
-#     events.each do |event|
-#       Event.create!(event)
-#     end
-#   end
 end
 
 
