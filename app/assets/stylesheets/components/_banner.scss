@@ -1,0 +1,56 @@
+.banner {
+  width: 100%;
+  // padding: 300px 0;
+  // margin-top: -100px;
+  background-size: cover;
+  background-image: image-url('undraw_having_fun_iais.svg');
+  // background-color: black;
+}
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  font-weight: 100;
+  font-size: 120px;
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.label {
+  color: white;
+  margin-top: 10px;
+}
+
+.field .field-input {
+  margin-bottom: 10px;
+}
+
+
+.banner-show {
+  background-size: cover;
+  background-position: center;
+  padding: 120px 0;
+  text-align: center;
+  position: relative;
+  // margin-top: -100px;
+}
+
+
+.banner-show h1 {
+  font-family: $font;
+  padding-right: 60px;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 50px;
+  font-weight: bold;
+}
+

@@ -27,7 +27,20 @@
 #   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
+# available at http://guides.rubyonrails.org/i18n.html.
 
 en:
   hello: "Hello world"
+
+ # janvier: january
+ # février: febuary
+ # mars: march
+ # avril: april
+ # mai: may
+ # juin: june
+ # juillet: july
+ # août: august
+ # septembre: september
+ # octobre: october
+ # novembre: november
+ # décembre: december

@@ -1,17 +1,47 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
+import "bootstrap";
+// import '../css/application.css'
 
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+import 'mapbox-gl/dist/mapbox-gl.css'; // <-- you need to uncomment the stylesheet_pack_tag in the layout!
+import { initMapbox } from '../plugins/init_mapbox';
+import '../plugins/filters';
+import { initSortable } from '../plugins/sortable.js';
+import './add_member.js'
+import './flatpicker.js'
+import '../plugins/win';
+
+import { effectModalEvent } from '../plugins/modal_event';
+import { removeInvitation } from '../plugins/vanishdiv';
+
+effectModalEvent();
+initMapbox();
+initSortable();
 
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
+// fonction mis en mode degueulasse pour l'alert quand un user rejoint le groupe
+
+const messageFromServer = (data) => {
+  console.log("===============")
+  console.log("je suis dans messageFromServer")
+  console.log(data)
+  showFlashMessage(data.photo, data.flash_message)
+}
+
+
+const showFlashMessage = (photoMessage, flashMessage) => {
+  const divMessage = `
+    <div class="invitation alert-primary" role="alert">
+      <img src="${photoMessage}"  class= "avatar-membre">
+      ${flashMessage}
+    </div>
+
+  `
+  const navbar = document.querySelector('.navbar')
+  navbar.insertAdjacentHTML('afterend', divMessage)
+  setTimeout(removeInvitation, 3000)
+}
+
+window.messageFromServer = messageFromServer
+
+
+
+

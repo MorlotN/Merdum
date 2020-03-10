@@ -1,0 +1,178 @@
+<div class="container">
+  <div class="groupe">
+
+    <div class="infos-permanentes">
+      <div class="permanentes">
+        <div class="groupe-nom">
+          <h1 id="taille-nom-group"><%= @group.name %></h1>
+            <div class="date-lieu">
+              <div class="lieu">
+                <p>À <%= @group.location %> le</p>
+              </div>
+              <div class="date">
+                <% if @group.date_event.nil? %>
+                <%= @group.date_event = DateTime.now %>
+                <% else %>
+               <p><%= @group.date_event.strftime("%d %B %Y") %></p>
+               <% end %>
+              </div>
+            </div>
+        </div>
+        <div class="members">
+          <p>Les membres du groupe</p>
+          <% @members.each do |member| %>
+          <% if member.photo %>
+            <%= image_tag (member.photo), class: "avatar-membre" %>
+            <% else %>
+            <%= image_tag "festeam-logo.png", class: "avatar-membre" %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+
+      </div>
+
+
+    <!-- <hr> -->
+
+<!------------------------------------------------------>
+
+    <div class="etats">
+      <% if @group.waiting_for_events? %>
+        <div class="etat1">
+          <div class="chiffre">
+            <p>1</p>
+          </div>
+        <p class="etat-mot">Propose une activité !</p>
+        </div>
+        <div class="etat2-no">
+          <div class="chiffre">
+            <p>2</p>
+          </div>
+        <p>Il faut voter !</p>
+        </div>
+          <div class="etat3-no">
+            <div class="chiffre">
+              <p>3</p>
+            </div>
+        <p>Résultat des votes !</p>
+        </div>
+
+      <% elsif @group.waiting_for_votes? %>
+        <div class="etat1-no">
+          <div class="chiffre">
+            <p>1</p>
+          </div>
+        <p class="etat-mot">Propose une activité !</p>
+        </div>
+        <div class="etat2">
+          <div class="chiffre">
+            <p>2</p>
+          </div>
+        <p>Il faut voter !</p>
+        </div>
+        <div class="etat3-no">
+          <div class="chiffre">
+            <p>3</p>
+        </div>
+        <p>Résultat des votes !</p>
+        </div>
+
+      <% elsif @group.finish? %>
+        <div class="etat1-no">
+          <div class="chiffre">
+            <p>1</p>
+          </div>
+        <p class="etat-mot">Propose une activité !</p>
+        </div>
+        <div class="etat2-no">
+          <div class="chiffre">
+            <p>2</p>
+          </div>
+        <p>Il faut voter !</p>
+        </div>
+        <div class="etat3">
+          <div class="chiffre">
+            <p>3</p>
+          </div>
+        <p>Résultat des votes !</p>
+        </div>
+
+      <% else %>
+          <p>Quelque chose cloche</p>
+        <% end %>
+    </div>
+      <!-- <hr> -->
+
+<!--------------------- 02 va voter----- --------------------------------->
+
+    <ul class="list_event-notvoted">
+      <div class="card-event-show">
+        <% @group.event_users.each do |event_user| %>
+      <!-- <hr> -->
+        <li class="event-choice">
+
+           <%= image_tag (event_user.event.photo_url), class: "img-card-show" %>
+
+          <div class="card-infos-show">
+           <h6><%= event_user.event.category %></h6>
+           <span><%= event_user.event.address  %></span>
+           <p><%= event_user.event.name %></p>
+          </div>
+          <% if event_user.user.photo %>
+          <%= image_tag (event_user.user.photo), class: "avatar-card" %>
+          <% else %>
+          <%= image_tag "festeam-logo.png", class: "avatar-card" %>
+          <% end %>
+        </li>
+          <% end %>
+          <% link_to "Va voter !", new_group_vote_path(@group), class: "boutton-show" %>
+      </div>
+
+<!--------------------- 01 PROPOSE UN EVENT --------------------------------->
+
+      <% if !current_user.proposed_event?(@group) %>
+      <!-- <hr> -->
+      <div class="img-add-event", style="display: flex; justify-content: center; align-items: center;">
+          <div class="move">
+            <span>
+              Tu n'as pas encore proposé d'activité pour ta soirée du <%= @group.date_event.strftime("%d %B %Y")  %>.
+            </span>
+
+            <%= link_to "Proposer une activité", new_group_event_user_path(@group), class: "boutton-show" %>
+          </div>
+          <div>
+            <%= image_tag 'undraw_add_content_d1tf2.svg', class: "undraw_add_content" %>
+          </div>
+        </div>
+        <% link_to "Proposer une activité", new_group_event_user_path(@group), class: "boutton-show" %>
+
+<!--------------------- 02 Va voter --------------------------------->
+
+      <% elsif !current_user.voted?(@group) %>
+        <% if @group.waiting_for_events? %>
+          <p>En attente des autres propositions...</p>
+        <% else %>
+
+        <div class="boutton-show">
+
+          <%= link_to "Va voter !", new_group_vote_path(@group)%>
+        <% end %>
+        </div>
+
+<!------------------------------------------------------>
+
+      <% else %>
+        <% if @group.waiting_for_votes? %>
+          <p>En attente des autres votes...</p>
+        <% else %>
+        <% params[:feu] = true %>
+          <%= link_to "Résultat !", event_path(@result_all, params[:feu]), class: "boutton-show" %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+

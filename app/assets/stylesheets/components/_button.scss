@@ -1,0 +1,99 @@
+.btn-add-event {
+  width: 250px;
+  color: #fff;
+  background-color: #03A9F4;
+}
+
+
+.btn-create a {
+color: white;
+text-decoration: none;
+}
+
+
+.btn-create {
+  border: 0.5px solid white;
+  transition: 0.3s;
+  // padding: 20px 100px;
+  color: #03A9F4;
+  width: 250px;
+}
+.btn-create-small {
+  border: 0.5px solid white;
+  transition: 0.3s;
+  padding: 20px 100px;
+  color: #03A9F4;
+  width: 350px;
+}
+.filter{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  background-color: white ;
+  border: 1px solid grey;
+  border-radius: 25px;
+  height: 40px;
+  text-align: center;
+  h2{
+    margin: 0 0;
+    color: #2F2E41;
+    font-family: $font;
+    font-weight: 100;
+    font-size: 16px;
+  }
+  h3{
+    font-size: 1rem;
+  }
+  &:hover{
+    color: white;
+  }
+}
+
+.btn-create.filter.filter-active h2 {
+  color: white;
+}
+
+.filter h2:hover {
+    color: white;
+  }
+
+.btn-create:hover {
+  border: 0px;
+  transition: 0.5s;
+  background-color: #00BCD4;
+}
+
+.btn-create-small:hover {
+  transition: 0.5s;
+  background-color: #00BCD4;
+  color: white;
+}
+
+
+#add-friend-input {
+  font-size: 16px;
+}
+
+.add-field {
+  border-radius:10px;
+}
+
+
+.valid-vote {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #202126;
+  color: white;
+  padding: 8px 15px;
+  &:hover{
+    border: 0.5px solid #202126 ;
+    background-color: transparent;
+    color: #202126;
+    text-decoration: none;
+  a {
+      text-decoration: none;
+    }
+  }
+}
