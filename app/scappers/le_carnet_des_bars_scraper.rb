@@ -12,7 +12,7 @@ class LeCarnetDesBarsScraper
 array = []
 
 bar_json = [1, 2, 3, 4]
-bar_json.each do |fichier|
+datata = bar_json.map do |fichier|
       data_bar = File.read("db/eventsbars#{fichier}.json")
       data = JSON.parse(data_bar)
 
@@ -60,12 +60,13 @@ bar_json.each do |fichier|
         event_url: event_url
       }
     end
+    array.uniq { |e| e[:name] }
     File.open("db/eventsbars2#{fichier}.json", 'wb') do |file|
       file.write(JSON.generate(array))
     end
     end
 
-    # data.uniq { |e| e[:name] }
+
   end
 
   end

@@ -28,7 +28,7 @@ class EventHome
 
   def filter_by_location
     # @events = @events.where(address: @params[:address])
-    @events = @events.near(@params[:address], 20)
+    @events = @events.near(@params[:address], 5)
   end
 
   def filter_by_date_start

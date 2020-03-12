@@ -6,7 +6,7 @@ Group.destroy_all
 User.destroy_all
 
 
-if ENV['SEED_EVENTS'] == 'true'
+# if ENV['SEED_EVENTS'] == 'true'
 
   Event.destroy_all
   # # departments = [01, 03, 07, 38, 42, 63, 69, 73, 74, 75, 92]
@@ -29,7 +29,7 @@ if ENV['SEED_EVENTS'] == 'true'
   #     Event.create!(event)
   #   end
   # end
-  bar_json = [1, 2, 3, 4]
+  bar_json = [1, 2]
 bar_json.each do |fichier|
     content = File.read("#{Rails.root}/db/eventsbars2#{fichier}.json")
         events = JSON.parse(content)
@@ -37,7 +37,7 @@ bar_json.each do |fichier|
       Event.create!(event)
     end
   end
-end
+# end
 
 
 

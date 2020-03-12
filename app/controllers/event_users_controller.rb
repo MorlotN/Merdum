@@ -7,6 +7,12 @@ class EventUsersController < ApplicationController
     @events = EventHome.new(cookies).home
 
     # @events = @events.geocoded #returns events with coordinates
+     if params[:query].present?
+      sql_query = "name ILIKE :query OR description ILIKE :query OR address ILIKE :query"
+      @events = @events.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @events = @events
+    end
 
     @markers = @events.map do |event|
       {
@@ -19,9 +25,10 @@ class EventUsersController < ApplicationController
         photo_url: event.photo_url,
         # infoWindow: render_to_string(partial: "info_window", locals: { event: event })
       }
-      # raise
     end
-  end
+
+
+end
 
   def create
     group = Group.find(params[:group_id])
