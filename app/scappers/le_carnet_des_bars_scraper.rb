@@ -11,7 +11,7 @@ class LeCarnetDesBarsScraper
   def scrap
 array = []
 
-bar_json = [1, 2, 3, 4]
+bar_json = [5]
 datata = bar_json.map do |fichier|
       data_bar = File.read("db/eventsbars#{fichier}.json")
       data = JSON.parse(data_bar)
