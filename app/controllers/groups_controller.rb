@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
   def show
     # probleme des votes = le hash @result_all qui doit contenir tout les resultats de votes pour chaque event en a qu'un seul
     # RESULT_ALL.nil? ? RESULT_ALL = {} : RESULT_ALL
+    cookies[:group] = params[:id]
     @group = Group.find(params[:id])
     @user_groups_members = UserGroup.where(group: @group)
      # do |user_groups_member|
@@ -18,7 +19,7 @@ class GroupsController < ApplicationController
       RESULT_ALL["#{event_user.event_id}"] = event_user.score
 
 
-      p RESULT_ALL
+      # p RESULT_ALL
       # raise
     end
     # raise

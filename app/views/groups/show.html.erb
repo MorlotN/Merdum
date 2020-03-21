@@ -139,14 +139,16 @@
               Tu n'as pas encore proposé d'activité pour ta soirée du <%= @group.date_event.strftime("%d %B %Y")  %>.
             </span>
 
-            <%= link_to "Proposer une activité", new_group_event_user_path(@group), class: "boutton-show" %>
+            <%= link_to "Proposer un bar", new_group_event_user_path(@group), class: "boutton-show" %>
+            <p></p>
+            <%= link_to "Créer ton event!", new_event_path(), class: "boutton-show" %>
           </div>
           <div>
             <%= image_tag 'undraw_add_content_d1tf2.svg', class: "undraw_add_content" %>
           </div>
         </div>
-        <% link_to "Proposer une activité", new_group_event_user_path(@group), class: "boutton-show" %>
-
+     <!--    <% link_to "Proposer une bar", new_group_event_user_path(@group), class: "boutton-show" %>
+ -->
 <!--------------------- 02 Va voter --------------------------------->
 
       <% elsif !current_user.voted?(@group) %>

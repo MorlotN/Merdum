@@ -1,0 +1,65 @@
+<!-- new.html.erb
+      t.string :name
+      t.date :date_start
+      t.date :date_end
+      t.string :address
+      t.string :category
+      t.string :sub_category
+      t.string :photo_url
+      t.float :lat
+      t.float :long
+      t.text :description
+      t.string :event_url -->
+
+<div class="responsive-container-group-right">
+
+        <div class="form-groupe">
+          <h2>Créer ton évenement</h2>
+          <%= simple_form_for(@event) do |f| %>
+            <div class="form">
+              <%= f.label 'Nomme ton evenement ?', class: 'form-control-label' %>
+              <%= f.text_field :name, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div>
+        <!--         <div class="form">
+              <%= f.label 'date ?', class: 'form-control-label' %>
+              <%= f.text_field :date_start, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div> -->
+          <!--       <div class="form">
+              <%= f.label 'coucou ?', class: 'form-control-label' %>
+              <%= f.text_field :date_end, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div> -->
+                <div class="form">
+              <%= f.label 'Catégorie', class: 'form-control-label' %>
+              <%= f.text_field :category, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div>
+                <div class="form">
+              <%= f.label 'Url d\'une image pour visualiser?', class: 'form-control-label' %>
+              <%= f.text_field :photo_url, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div>
+         <!--        <div class="form">
+              <%= f.label 'Quel nom pour ton groupe ?', class: 'form-control-label' %>
+              <%= f.text_field :lat, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div> -->
+          <!--       <div class="form">
+              <%= f.label 'Quel nom pour ton groupe ?', class: 'form-control-label' %>
+              <%= f.text_field :long, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div> -->
+                <div class="form">
+              <%= f.label 'Une description ?', class: 'form-control-label' %>
+              <%= f.text_field :description, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div>
+
+            <div class="form">
+              <%= f.label "Quel est l'adresse ?", class: 'form-control-label' %>
+              <%= f.text_field :address, class: 'form-control-group', placeholder: "Ex : Lyon" %>
+            </div>
+                <div class="form">
+              <%= f.label 'Exist-il un lien url vers ton évenement ?', class: 'form-control-label' %>
+              <%= f.text_field :event_url, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div>
+
+            <%= f.submit "Soumet ta proposition !", class: "boutton" %>
+            <% end %>
+        </div>
+  </div>
+</div>

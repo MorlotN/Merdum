@@ -8,7 +8,7 @@ Rails.application.routes.draw do
    # resources :recruiters, only: [:new, :create]
    # end
 
-  resources :events, only: [:index, :show] do
+  resources :events, only: [:index, :show, :new, :create] do
      collection do
       get 'categories'
     end
