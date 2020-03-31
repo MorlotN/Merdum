@@ -4,6 +4,7 @@ class EventUsersController < ApplicationController
     @group = Group.find(params[:group_id])
     cookies[:address] = @group.location
     cookies[:date_start] = @group.date_event
+    cookies[:nearest] = @group.nearest
     @events = EventHome.new(cookies).home
 
     # @events = @events.geocoded #returns events with coordinates

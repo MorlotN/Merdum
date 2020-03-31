@@ -2,6 +2,7 @@ class EventHome
   def initialize(params)
     @events = Event.all
     @params = params
+    # @cookies = cookies
   end
 
   def home
@@ -28,7 +29,12 @@ class EventHome
 
   def filter_by_location
     # @events = @events.where(address: @params[:address])
-    @events = @events.near(@params[:address], 1)
+    if @params[:nearest].nil?
+      nearest = 1
+    else
+      nearest = @params[:nearest]
+    end
+    @events = @events.near(@params[:address], nearest)
   end
 
   def filter_by_date_start

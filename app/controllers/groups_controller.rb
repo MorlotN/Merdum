@@ -4,6 +4,8 @@ class GroupsController < ApplicationController
   RESULT_ALL = Hash.new { |hash, key| hash[key] = 0 }
 
   def index
+    @group = Group.all
+    @my_groups = current_user.groups
   end
 
   def show
@@ -30,6 +32,8 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    @nearest = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
+    # @nearest << [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
   end
 
   def create
@@ -38,6 +42,8 @@ class GroupsController < ApplicationController
     params[:date_start] = cookies[:date_start]
     params[:address] = cookies[:address]
     # emails = []
+    cookies[:nearest] = params[:nearest]
+    params[:nearest] = cookies[:nearest]
     params["invit-email"].nil? ? emails = [] : emails = params["invit-email"]
     emails << params["group"]["email"]
     # emails = emails.map(&:inspect).join(', ').to_a
@@ -81,6 +87,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :date_event, :location, :email, :vote_duration, :proposition_duration)
+    params.require(:group).permit(:name, :nearest, :date_event, :location, :email, :vote_duration, :proposition_duration)
   end
 end
