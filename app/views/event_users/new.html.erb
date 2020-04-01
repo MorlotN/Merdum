@@ -24,6 +24,7 @@
       <%= submit_tag "Recherche", class: "boutton-show-2" %>
       <% end %>
     <hr>
+<%= link_to "Créer mon evenement", new_event_path(@group), class: "boutton-show-2" %>
     <div class="card-container">
 
 
@@ -37,7 +38,6 @@
 
           <div class ="btn-create filter" data-category="<%= event.category %>">
             <!-- <h2><%= array[index] ? "#{array[index]} " : "" %>(<%= array_compte.count(event.category) %>)</h2> -->
-
 
           </div>
           <% else  %>

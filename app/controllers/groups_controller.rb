@@ -30,6 +30,11 @@ class GroupsController < ApplicationController
     # raise
   end
 
+  def edit
+    @group = Group.find(params[:id])
+    @nearest = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
+  end
+
   def new
     @group = Group.new
     @nearest = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
@@ -69,9 +74,12 @@ class GroupsController < ApplicationController
   end
 
   def update
-  end
-
-  def edit
+    @group = Group.find(params[:id])
+    @group.update(group_params)
+    @group.votes.destroy
+    @group.event_users.destroy
+    # @group.event_ids = [125]
+    redirect_to group_path(@group)
   end
 
   def destroy

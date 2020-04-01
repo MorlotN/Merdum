@@ -118,6 +118,8 @@
            <h6><%= event_user.event.category %></h6>
            <span><%= event_user.event.address  %></span>
            <p><%= event_user.event.name %></p>
+          <h6> <%= link_to "Modifier", new_group_event_user_path(@group), class: "details" %></h6>
+
           </div>
           <% if event_user.user.photo %>
           <%= image_tag (event_user.user.photo), class: "avatar-card" %>

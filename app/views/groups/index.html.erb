@@ -2,7 +2,7 @@
   <div class="dashboard">
     <div class="resume">
       <div class="resume-infos">
-        <p>09</p>
+        <p><%= @my_groups.size %></p>
         <p>Groupes</p>
       </div>
       <div class="resume-infos">
@@ -22,6 +22,8 @@
         <div class="card-my-groups">
           <p><%= group.name %></p>
           <p><%= group.date_event %></p>
+          <p><%= group.events.name %></p>
+          <p><%= link_to "Edite", edit_group_path(group.id), class:"event-details" %></p>
         </div>
       <% end %>
     </div>

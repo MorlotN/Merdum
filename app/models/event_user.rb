@@ -3,7 +3,7 @@ class EventUser < ApplicationRecord
   belongs_to :group
   belongs_to :user
 
-  has_many :votes
+  has_many :votes, dependent: :delete_all
 
   def score
     points = 0

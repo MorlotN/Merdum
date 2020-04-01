@@ -1,2 +1,71 @@
-<h1>Groups#edit</h1>
-<p>Find me in app/views/groups/edit.html.erb</p>
+
+<div class="responsive-container-group">
+
+  <div class="responsive-container-group-left" >
+
+    <div class="responsive-valeur">
+
+      <h1>Qu'est-ce qu'on Fest ?</h1>
+      <p class="text-center">Invite tes ami(e)s à sortir de leurs zone de confort !</p>
+      <%#= image_tag "undraw_friends_online_klj6.svg", style:'margin-left: 50px; width: 100%' %>
+    </div>
+
+      <div class="rules" style="display:flex;">
+        <div class="rule-one">
+          <div class="img-ruleone"><%= image_tag "invit.jpg" %></div>
+          <div>
+          <h4>1. Propose un événement </h4>
+          </div>
+         <!--  <p class="rule-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum quam, totam natus unde incidunt fuga, dicta quibusdam, illum optio explicabo molestiae. Debitis minus aliquam libero hic dolores suscipit quas neque.</p> -->
+        </div>
+        <div class="rule-two">
+          <div class="img-ruletwo"><%= image_tag "vote.jpg" %></div>
+          <div>
+          <h4>2. Classe et vote selon tes préférences</h4>
+          </div>
+          <!-- <p class="rule-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum quam, totam natus unde incidunt fuga, dicta quibusdam, illum optio explicabo molestiae. Debitis minus aliquam libero hic dolores suscipit quas neque.</p> -->
+        </div>
+        <div class="rule-tree">
+          <div class="img-ruletree"><%= image_tag "party.jpg"%></div>
+          <div >
+          <h4>3. Découvre l'univers de tes ami(e)s</h4>
+          </div>
+          <!-- <p class="rule-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum quam, totam natus unde incidunt fuga, dicta quibusdam, illum optio explicabo molestiae. Debitis minus aliquam libero hic dolores suscipit quas neque.</p> -->
+        </div>
+    </div>
+  </div>
+
+<div class="responsive-container-group-right">
+
+        <div class="form-groupe">
+          <h2>Créer votre groupe</h2>
+          <%= simple_form_for(@group) do |f| %>
+            <div class="form">
+              <%= f.label 'Quel nom pour ton groupe ?', class: 'form-control-label' %>
+              <%= f.text_field :name, class: 'form-control-group', placeholder: "Ex : Soirée des potos" %>
+            </div>
+            <div class="form">
+              <%= f.label "À quelle date veux-tu organiser la soirée ?", class: 'form-control-label' %>
+              <%= f.input_field :date_event, as: :string, class: "flatpikr", placeholder: "Ex : 07 décembre 2019" %>
+            </div>
+            <div class="form">
+              <%= f.label "Dans quelle ville ?", class: 'form-control-label' %>
+              <%= f.text_field :location, class: 'form-control-group', placeholder: "Ex : Lyon" %>
+            </div>
+             <div class="form">
+              <%= f.label "À quelle distance autour ?", class: 'form-control-label' %>
+              <%= f.select :nearest, @nearest.each { |r| print r }, class: 'form-control-group', include_blank: true %>
+            </div>
+           <div class="form">
+              <%= f.label "Ajoute tes amis !", class: 'form-control-label' %>
+              <%= f.input_field :email, class: 'form-control-group', placeholder: "Ex : benjamin.prejent@gmail.com" %>
+              <div class="email">
+                <a  id="add-friend-input" ><i class="fas fa-plus-circle"></i></a>
+              </div>
+            </div>
+            <%= f.submit "Valide ton groupe !", class: "boutton" %>
+            <% end %>
+        </div>
+  </div>
+</div>
+
