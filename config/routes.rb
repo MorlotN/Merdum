@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     end
   end
   resources :groups do
-    resources :event_users, only: [:new, :create]
-    resources :votes, only: [:new, :create]
+    resources :event_users, only: [:new, :create, :destroy]
+    resources :votes, only: [:new, :create, :destroy]
     resources :user_groups, only: [:new]
     collection do
       get 'my_groups'

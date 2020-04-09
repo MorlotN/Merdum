@@ -57,6 +57,7 @@ class GroupsController < ApplicationController
     @group.email = emails
     # cookies[:date_start] = @group.date_event
     # @group.user = current_user
+    # raise
     if @group.save
       @group.users << current_user
       JSON.parse(@group.email).each do |email|
@@ -75,10 +76,35 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
+    # @event_user = EventUser.find(@group)
+    # raise
     @group.update(group_params)
-    @group.votes.destroy
+    # @group.user_ids = []
+    if EventUser.find_by(group_id: params[:id]).nil?
+    else
+     all_event = @group.events
+      all_event.each do |event|
+    EventUser.find_by(group_id: params[:id]).destroy
+    end
+  end
+# raise
+    # @group.votes = []
+    # map do |score|
+    #   score = 0
+    # end
+    # raise
+    # @group.events = []
+    @group.users = []
+    emails = []
     @group.event_users.destroy
-    # @group.event_ids = [125]
+    # @group.event_ids.destroy
+    params["invit-email"].nil? ? emails = [] : emails = params["invit-email"]
+    emails << params["group"]["email"]
+          @group.users << current_user
+      JSON.parse(@group.email).each do |email|
+        mail = UserMailer.with(email: email, group: @group).send_invitation
+        mail.deliver_now
+      end
     redirect_to group_path(@group)
   end
 

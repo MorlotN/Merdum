@@ -55,6 +55,7 @@
              <div class="form">
               <%= f.label "À quelle distance autour ?", class: 'form-control-label' %>
               <%= f.select :nearest, @nearest.each { |r| print r }, class: 'form-control-group', include_blank: true %>
+              km
             </div>
            <div class="form">
               <%= f.label "Ajoute tes amis !", class: 'form-control-label' %>
