@@ -1,3 +1,4 @@
+@media(max-width: 3000000px) {
 .dashboard {
   widows: 1080px;
 }
@@ -14,11 +15,42 @@
   background-color: red;
   text-align: center;
 }
-
+.cards-my-groups{
+  display: flex;
+}
 .card-my-groups {
-  background-color: blue;
-  height: 200px;
+  // display: flex;
+  justify-content: center ;
+  position: relative;
+  height: auto;
+  width: auto;
   margin-top: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  box-shadow: 2 2 0 rgba(0,0,0,0.5);
 }
 
+.card-my-groups .img-card-show2 {
+  display: flex;
+  position: absolute;
+  opacity: 0.5;
+  width: 50%;
+  height: 50%;
+    object-fit: fill;
+    // border-radius: 5px;
+}
 
+.descriptions_group{
+  filter: blur;
+  background-color: 2 2 0 rgba(0,0,0,0.5);
+}
+}
+@media(max-width: 1000px) {
+.img-card-show {
+  margin-left: -30px;
+    height: 65px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+}

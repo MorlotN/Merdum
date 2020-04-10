@@ -5,7 +5,8 @@
         <p><%= @my_groups.size %></p>
         <p>Groupes</p>
       </div>
-      <div class="resume-infos">
+
+<!--       <div class="resume-infos">
         <p>4</p>
         <p>Victoires</p>
       </div>
@@ -13,33 +14,46 @@
         <p>2</p>
         <p>Défaites</p>
       </div>
+       -->
     </div>
     <% if @my_groups.nil? %>
       <p>N'attendez plus créer le votre en invitant vos amis</p>
     <% else %>
-    <div class="cards-my-groups">
+    <div class="events-grid">
       <% @my_groups.each do |group| %>
-        <div class="card-my-groups">
-
-          <% url = group.photo %>
+          <% url = group[:photo] %>
+        <div class="card-my-groups" style="background-image: url(<%= url %>); background-size: cover; opacity: 0.8">
+          <div style="opacity: 1">
 <!--
-          <div class="img-card-show" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= url %>);">
-           -->
-           <%= image_tag (url), class: "img-card-show" %>
-          <p><%= group.name %></p>
-          <p><%= group.date_event %></p>
-          <p><%= group.events.name %></p>
+          <div class="img-card-show" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), opacity: 0.3, url(<%= url %>);">
+ -->
+     <!--       <div class= "img-card-show2">
+
+           </div> -->
+          <h3><%= group.name %></h3>
+
+          <p>La dernière activité réalisée: <%= group.win %></p>
+          <!--   <p>Groupe:</p> -->
+
+          <p>Le <%= group.date_event %></p>
+          <%   all_event = group.events  %>
+          <p>Les événements selectionné:</p>
+          <% all_event.each do |event|  %>
+          <p>- <%= event.name %></p>
+          <% end %>
+          <p>Les membres du groupe: </p>
           <% gg = group.email.split('"') %>
           <% gg.delete_at(0) %>
           <% gg.delete_at(-1) %>
           <% gg.each do |email| %>
-          <p><%= email %></p>
+          <p>- <%= email %></p>
           <% end %>
-          <p><%= link_to "Edite", edit_group_path(group.id), class:"event-details" %></p>
+          <p><%= link_to "Réutiliser", edit_group_path(group.id), class: "boutton-show-2" %></p>
           <p><%= link_to "Supprimer",
             group_path(group.id),
             method: :delete,
             data: { confirm: "Vous êtes sur?" } %></p>
+          </div>
         </div>
       <% end %>
     </div>

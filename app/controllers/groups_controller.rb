@@ -80,6 +80,7 @@ class GroupsController < ApplicationController
       JSON.parse(@group.email).each do |email|
         mail = UserMailer.with(email: email, group: @group).send_invitation
         mail.deliver_now
+        # @group.email << current_user.email
       end
       redirect_to group_path(@group)
     else
@@ -127,9 +128,9 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    @group.delete
+    @group.destroy
+    # raise
 
-    # no need for app/views/restaurants/destroy.html.erb
     redirect_to groups_path
   end
 
