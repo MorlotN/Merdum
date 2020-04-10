@@ -15,15 +15,31 @@
       </div>
     </div>
     <% if @my_groups.nil? %>
-      <p>N'attendez plus créer votre en invitant vos amis</p>
+      <p>N'attendez plus créer le votre en invitant vos amis</p>
     <% else %>
     <div class="cards-my-groups">
       <% @my_groups.each do |group| %>
         <div class="card-my-groups">
+
+          <% url = group.photo %>
+<!--
+          <div class="img-card-show" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= url %>);">
+           -->
+           <%= image_tag (url), class: "img-card-show" %>
           <p><%= group.name %></p>
           <p><%= group.date_event %></p>
           <p><%= group.events.name %></p>
+          <% gg = group.email.split('"') %>
+          <% gg.delete_at(0) %>
+          <% gg.delete_at(-1) %>
+          <% gg.each do |email| %>
+          <p><%= email %></p>
+          <% end %>
           <p><%= link_to "Edite", edit_group_path(group.id), class:"event-details" %></p>
+          <p><%= link_to "Supprimer",
+            group_path(group.id),
+            method: :delete,
+            data: { confirm: "Vous êtes sur?" } %></p>
         </div>
       <% end %>
     </div>

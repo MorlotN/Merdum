@@ -25,6 +25,10 @@ class EventsController < ApplicationController
     cookies[:name] = params[:name]
 
     cookies[:event_id] = params[:id]
+    if params[:feu] == true
+       @my_groups = cookies[:group]
+       @my_groups = Group.update(photo: @event.photo_url )
+     end
     # if user_signed_in?
     #   @is_creator = current_user == @event.creator
     # else

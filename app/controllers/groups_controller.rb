@@ -4,8 +4,20 @@ class GroupsController < ApplicationController
   RESULT_ALL = Hash.new { |hash, key| hash[key] = 0 }
 
   def index
+    @events = EventHome.new(cookies).result
     @group = Group.all
     @my_groups = current_user.groups
+    # raise
+  #   if @my_group && @my_group.event_users
+  #    @my_group.event_users.each_with_index do |event_user, index|
+  #     RESULT_ALL["#{event_user.event_id}"] = event_user.score
+  #   end
+  #   @result_all = RESULT_ALL.max_by{|k,v| v}
+  # else
+  # end
+#   @win = Event.find_by(id: @result_all[0])
+#   @win.photo
+# raise
   end
 
   def show
@@ -27,7 +39,12 @@ class GroupsController < ApplicationController
     # raise
     # p RESULT_ALL
     @result_all = RESULT_ALL.max_by{|k,v| v}
-    # raise
+
+#     if @result_all
+#       @win = Event.find_by(id: @result_all[0])
+#       Group.update(photo: @win.photo_url)
+# end
+
   end
 
   def edit
@@ -109,6 +126,11 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    @group = Group.find(params[:id])
+    @group.delete
+
+    # no need for app/views/restaurants/destroy.html.erb
+    redirect_to groups_path
   end
 
   private
