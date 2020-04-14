@@ -72,16 +72,22 @@ class GroupsController < ApplicationController
 
     @group = Group.new(group_params)
     @group.email = emails
+    @group.email.insert(-2, ", \"#{current_user.email}\"")
     # cookies[:date_start] = @group.date_event
     # @group.user = current_user
     # raise
     if @group.save
       @group.users << current_user
       JSON.parse(@group.email).each do |email|
+        if email == current_user.email
+        else
         mail = UserMailer.with(email: email, group: @group).send_invitation
         mail.deliver_now
-        # @group.email << current_user.email
       end
+
+      end
+        # @group.email.insert(-2, ", \"#{current_user.email}\"")
+        # raise
       redirect_to group_path(@group)
     else
       render :new
@@ -128,7 +134,8 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    @group.destroy
+    @my_group = current_user.groups
+    @my_group.delete(@group)
     # raise
 
     redirect_to groups_path

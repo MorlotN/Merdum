@@ -1,64 +1,83 @@
-<div class="container">
-  <div class="dashboard">
-    <div class="resume">
-      <div class="resume-infos">
-        <p><%= @my_groups.size %></p>
-        <p>Groupes</p>
-      </div>
 
-<!--       <div class="resume-infos">
-        <p>4</p>
-        <p>Victoires</p>
-      </div>
-      <div class="resume-infos">
-        <p>2</p>
-        <p>Défaites</p>
-      </div>
-       -->
-    </div>
-    <% if @my_groups.nil? %>
-      <p>N'attendez plus créer le votre en invitant vos amis</p>
+<h1> Vous avez
+ <%= @my_groups.size %> groupes</h1>
+
+
+         <% if @my_groups.nil? %>
+      N'attendez plus créer le votre en invitant vos amis
     <% else %>
-    <div class="events-grid">
-      <% @my_groups.each do |group| %>
+    <p></p>
+
+ <!-- <ul class="list_event-notvoted"> -->
+      <div class="card-event-show2">
+     <% @my_groups.each do |group| %>
+
           <% url = group[:photo] %>
-        <div class="card-my-groups" style="background-image: url(<%= url %>); background-size: cover; opacity: 0.8">
-          <div style="opacity: 1">
-<!--
-          <div class="img-card-show" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), opacity: 0.3, url(<%= url %>);">
- -->
-     <!--       <div class= "img-card-show2">
-
-           </div> -->
-          <h3><%= group.name %></h3>
-
-          <p>La dernière activité réalisée: <%= group.win %></p>
-          <!--   <p>Groupe:</p> -->
-
-          <p>Le <%= group.date_event %></p>
-          <%   all_event = group.events  %>
-          <p>Les événements selectionné:</p>
-          <% all_event.each do |event|  %>
-          <p>- <%= event.name %></p>
+          <div class="event-choice2">
+          <% if url.nil? %>
+          <%= image_tag "festeam-logo.png", class: "img-card-show2" %>
+          <% else %>
+          <%= image_tag (url), class: "img-card-show2" %>
           <% end %>
-          <p>Les membres du groupe: </p>
+          <!-- <div class="card-infos-show2"> -->
+            <p>
+          <h4 style="margin-left: 10px">
+           <%= group.name %>
+          </h4>
+          </p>
+          <p>
+          La dernière activité réalisée: <br><%= group.win %>
+          <br>
+          <br>
+           Date <br> <%= group.date_event %>
+          <% all_event = group.events  %>
+          </p>
+          <p>
+          Les événements selectionné:
+          <br>
+          <% all_event.each_with_index do |event, i|  %>
+          - <%= event.name %>
+          <% half_size = all_event.size/2 %>
+          <% if all_event.size >= 6 && all_event[half_size] == event %>
+            <p></p>
+            <% end %>
+          <br>
+          <% end %>
+          </p>
+          <p>
+          Les membres du groupe:
+          <br>
           <% gg = group.email.split('"') %>
+
           <% gg.delete_at(0) %>
           <% gg.delete_at(-1) %>
-          <% gg.each do |email| %>
-          <p>- <%= email %></p>
+          <% gg.delete('"') %>
+          <% gg.delete(',') %>
+
+          <% gg.each_with_index do |email, i| %>
+            <% if i.even? || gg.size == i+1 %>
+          - <%= email %>
+          <br>
+          <% half_size = gg.size/2 %>
+          <% if gg.size >= 6 && gg[half_size] == email %>
+            <p></p>
+            <% end %>
+
+            <% end %>
           <% end %>
-          <p><%= link_to "Réutiliser", edit_group_path(group.id), class: "boutton-show-2" %></p>
-          <p><%= link_to "Supprimer",
+
+          </p>
+          <p>
+          <%= link_to "Réutiliser", edit_group_path(group.id), class: "boutton-show-2" %>
+            <br>
+            <br>
+          <%= link_to "Supprimer",
             group_path(group.id),
+            class: "boutton-show-2",
             method: :delete,
-            data: { confirm: "Vous êtes sur?" } %></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
-</div>
-
-
+            data: { confirm: "Vous êtes sur?" } %>
+          </p>
+           </div>
+           </div>
+          <% end %>
+          <% end %>
