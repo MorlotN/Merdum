@@ -27,15 +27,15 @@
           </p>
           <p>
             <h6>
-          La dernière activité: <br><%= group.win %>
+         <strong> La dernière activité:</strong> <br><%= group.win %>
           <br>
           <br>
-           Date <br> <%= group.date_event %>
+          <strong> Date </strong> <br> <%= group.date_event %>
           <% all_event = group.events  %>
           </h6>
           </p>
           <p>
-          Les événements selectionné:
+          <strong> Les événements selectionné: </strong>
           <br>
           <% all_event.each_with_index do |event, i|  %>
           - <%= event.name %>
@@ -48,7 +48,7 @@
           </p>
           <p>
             <h6>
-          Les membres du groupe:
+         <strong> Les membres du groupe: </strong>
           <br>
           <% array_email = group.email.split('"') %>
 
@@ -59,7 +59,7 @@
 
           <% array_email.each_with_index do |email, i| %>
             <% if i.even? || array_email.size == i+1 %>
-          - <%= email %>
+          -<%= email %>
           <br>
           <% half_size = array_email.size/2 %>
           <% if array_email.size >= 6 && array_email[half_size] == email %>
