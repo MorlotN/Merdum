@@ -43,13 +43,13 @@
     -webkit-transition: 0.3s;
     transition: 0.3s;
     border-radius: 5px;
-    color: #5C676D;
-    /* background-color: #e91e63; */
+    // color: #5C676D;
+    background-color: #FFFFFF;
     padding: 8px 20px;
     border: 1px solid #5C676D;
   &:hover{
   border: 1px solid #e91e63;
-  background-color: #e91e63;
+  background-color: #FF0096;
   color: white;
   }
 }
@@ -57,4 +57,5 @@
 a.onglet-groupe {
 
   text-decoration: none;
+  color: black;
 }

@@ -21,16 +21,18 @@
           <% end %>
           <!-- <div class="card-infos-show2"> -->
             <p>
-          <h4 style="margin-left: 10px">
+          <h4 style="margin-left: 10px; font-weight: bold; color: black;">
            <%= group.name %>
           </h4>
           </p>
           <p>
-          La dernière activité réalisée: <br><%= group.win %>
+            <h6>
+          La dernière activité: <br><%= group.win %>
           <br>
           <br>
            Date <br> <%= group.date_event %>
           <% all_event = group.events  %>
+          </h6>
           </p>
           <p>
           Les événements selectionné:
@@ -39,43 +41,47 @@
           - <%= event.name %>
           <% half_size = all_event.size/2 %>
           <% if all_event.size >= 6 && all_event[half_size] == event %>
-            <p></p>
+            </p><p>
             <% end %>
           <br>
           <% end %>
           </p>
           <p>
+            <h6>
           Les membres du groupe:
           <br>
-          <% gg = group.email.split('"') %>
+          <% array_email = group.email.split('"') %>
 
-          <% gg.delete_at(0) %>
-          <% gg.delete_at(-1) %>
-          <% gg.delete('"') %>
-          <% gg.delete(',') %>
+          <% array_email.delete_at(0) %>
+          <% array_email.delete_at(-1) %>
+          <% array_email.delete('"') %>
+          <% array_email.delete(',') %>
 
-          <% gg.each_with_index do |email, i| %>
-            <% if i.even? || gg.size == i+1 %>
+          <% array_email.each_with_index do |email, i| %>
+            <% if i.even? || array_email.size == i+1 %>
           - <%= email %>
           <br>
-          <% half_size = gg.size/2 %>
-          <% if gg.size >= 6 && gg[half_size] == email %>
-            <p></p>
+          <% half_size = array_email.size/2 %>
+          <% if array_email.size >= 6 && array_email[half_size] == email %>
+            </p><p>
             <% end %>
 
             <% end %>
           <% end %>
-
+          </h6>
           </p>
           <p>
-          <%= link_to "Réutiliser", edit_group_path(group.id), class: "boutton-show-2" %>
+            <h6>
+          <%= link_to "Réutiliser", edit_group_path(group.id), class: "boutton-show-2", style: "padding:5px" %>
             <br>
             <br>
           <%= link_to "Supprimer",
             group_path(group.id),
             class: "boutton-show-2",
+            style: "padding:5px",
             method: :delete,
             data: { confirm: "Vous êtes sur?" } %>
+          </h6>
           </p>
            </div>
            </div>
