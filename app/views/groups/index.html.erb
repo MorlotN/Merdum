@@ -1,6 +1,10 @@
 
 <h1> Vous avez
+  <% if @my_groups.size == 1  %>
+ <%= @my_groups.size %> groupe</h1>
+ <% else %>
  <%= @my_groups.size %> groupes</h1>
+ <% end %>
 
 
          <% if @my_groups.nil? %>
@@ -73,6 +77,9 @@
           <p>
             <h6>
           <%= link_to "Réutiliser", edit_group_path(group.id), class: "boutton-show-2", style: "padding:5px" %>
+            <br>
+            <br>
+            <%= link_to "Rejoindre", group_path(group.id), class: "boutton-show-2", style: "padding:5px" %>
             <br>
             <br>
           <%= link_to "Supprimer",

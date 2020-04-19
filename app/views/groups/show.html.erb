@@ -26,6 +26,10 @@
             <% else %>
             <%= image_tag "festeam-logo.png", class: "avatar-membre" %>
             <% end %>
+            <span class="pseudo1">
+            <% mail = member.email %>
+            <%= mail.slice(0...(mail.index('@')))  %>
+            </span>
           <% end %>
         </div>
         </div>
@@ -127,6 +131,10 @@
           <% else %>
           <%= image_tag "festeam-logo.png", class: "avatar-card" %>
           <% end %>
+          <p class="pseudo2">
+          <% mail = event_user.user.email %>
+            <%= mail.slice(0...(mail.index('@')))  %>
+          </p>
         </li>
           <% end %>
           <% link_to "Va voter !", new_group_vote_path(@group), class: "boutton-show" %>
