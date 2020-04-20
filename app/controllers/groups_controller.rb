@@ -85,9 +85,9 @@ class GroupsController < ApplicationController
       p "ajout current_user"
       JSON.parse(@group.email).each do |email|
         p "json"
-        if email == current_user.email
+        # if email == current_user.email
           p "email if"
-        else
+        # else
           p "invitation"
         mail = UserMailer.with(email: email, group: @group).send_invitation
         p "mail"
@@ -95,7 +95,7 @@ class GroupsController < ApplicationController
         p "mail envoyé"
       end
       p "fin"
-      end
+      # end
       p "avant redirect"
         # @group.email.insert(-2, ", \"#{current_user.email}\"")
         # raise
