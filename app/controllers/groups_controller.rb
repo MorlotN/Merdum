@@ -69,26 +69,38 @@ class GroupsController < ApplicationController
     params["invit-email"].nil? ? emails = [] : emails = params["invit-email"]
     emails << params["group"]["email"]
     # emails = emails.map(&:inspect).join(', ').to_a
-
+    p "avant group.new"
     @group = Group.new(group_params)
+    p "après new"
     @group.email = emails
-    # @group.email.insert(-2, ", \"#{current_user.email}\"")
+    p "email"
+    @group.email.insert(-2, ", \"#{current_user.email}\"")
+    p " avant save"
     # cookies[:date_start] = @group.date_event
     # @group.user = current_user
     # raise
     if @group.save
+      p "après save"
       @group.users << current_user
+      p "ajout current_user"
       JSON.parse(@group.email).each do |email|
+        p "json"
         if email == current_user.email
+          p "email if"
         else
+          p "invitation"
         mail = UserMailer.with(email: email, group: @group).send_invitation
+        p "mail"
         mail.deliver_now
+        p "mail envoyé"
       end
-
+      p "fin"
       end
+      p "avant redirect"
         # @group.email.insert(-2, ", \"#{current_user.email}\"")
         # raise
       redirect_to group_path(@group)
+      p "après redirect"
     else
       render :new
     end
