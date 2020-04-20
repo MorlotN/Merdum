@@ -74,11 +74,12 @@ class GroupsController < ApplicationController
     p "après new"
     @group.email = emails
     p "email"
-    # @group.email.insert(-2, ", \"#{current_user.email}\"")
+    @group.email.insert(-2, ", \"#{current_user.email}\"")
     p " avant save"
     # cookies[:date_start] = @group.date_event
     # @group.user = current_user
     # raise
+    @group.save
     if @group.save
       p "après save"
       @group.users << current_user
