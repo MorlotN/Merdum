@@ -79,7 +79,6 @@ class GroupsController < ApplicationController
     # cookies[:date_start] = @group.date_event
     # @group.user = current_user
     # raise
-    @group.save
     if @group.save
       p "après save"
       @group.users << current_user

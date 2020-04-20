@@ -2,7 +2,7 @@
 Vote.destroy_all
 EventUser.destroy_all
 UserGroup.destroy_all
-Group.destroy_all
+# Group.destroy_all
 User.destroy_all
 
 
