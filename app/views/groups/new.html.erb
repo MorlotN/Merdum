@@ -49,12 +49,12 @@
               <%= f.input_field :date_event, as: :string, class: "flatpikr", placeholder: "Ex : 07 décembre 2019" %>
             </div>
             <div class="form">
-              <%= f.label "Dans quelle ville ?", class: 'form-control-label' %>
+              <%= f.label "À quelle adresse/ville ?", class: 'form-control-label' %>
               <%= f.text_field :location, class: 'form-control-group', placeholder: "Ex : Lyon" %>
             </div>
              <div class="form">
               <%= f.label "À quelle distance autour ?", class: 'form-control-label' %>
-              <%= f.select :nearest, @nearest.each { |r| print r }, class: 'form-control-group', include_blank: true %>
+              <%= f.select :nearest, @nearest.each { |r| print r }, class: 'form-control-group', default: '1', include_blank: true %>
               km
             </div>
            <div class="form">

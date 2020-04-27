@@ -6,8 +6,16 @@ class GroupsController < ApplicationController
   def index
     @events = EventHome.new(cookies).result
     @group = Group.all
-    @my_groups = current_user.groups
+    @my_groups = []
+    @group.each do |group|
+    if group.email.include?("\"#{current_user.email}\"")
+    @my_groups << group
+# @my_groups = current_user.groups
+  end
+end
     # raise
+
+
   #   if @my_group && @my_group.event_users
   #    @my_group.event_users.each_with_index do |event_user, index|
   #     RESULT_ALL["#{event_user.event_id}"] = event_user.score
@@ -50,6 +58,7 @@ class GroupsController < ApplicationController
   def edit
     @group = Group.find(params[:id])
     @nearest = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
+
   end
 
   def new
@@ -69,38 +78,38 @@ class GroupsController < ApplicationController
     params["invit-email"].nil? ? emails = [] : emails = params["invit-email"]
     emails << params["group"]["email"]
     # emails = emails.map(&:inspect).join(', ').to_a
-    p "avant group.new"
+    # p "avant group.new"
     @group = Group.new(group_params)
-    p "après new"
+
     @group.email = emails
-    p "email"
+
     @group.email.insert(-2, ", \"#{current_user.email}\"")
-    p " avant save"
+
     # cookies[:date_start] = @group.date_event
     # @group.user = current_user
     # raise
     if @group.save
-      p "après save"
+
       @group.users << current_user
-      p "ajout current_user"
+
       JSON.parse(@group.email).each do |email|
-        p "json"
+
         # if email == current_user.email
-          p "email if"
+
         # else
-          p "invitation"
+
         mail = UserMailer.with(email: email, group: @group).send_invitation
-        p "mail"
+
         mail.deliver_now
-        p "mail envoyé"
+
       end
-      p "fin"
+
       # end
-      p "avant redirect"
+
         # @group.email.insert(-2, ", \"#{current_user.email}\"")
         # raise
       redirect_to group_path(@group)
-      p "après redirect"
+
     else
       render :new
     end
@@ -121,6 +130,7 @@ class GroupsController < ApplicationController
      all_event = @group.events
       all_event.each do |event|
     EventUser.find_by(group_id: params[:id]).destroy
+    @group.votes.destroy
     end
   end
 # raise
@@ -146,10 +156,18 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    @my_group = current_user.groups
-    @my_group.delete(@group)
-    # raise
+    # @my_group = current_user.groups
+    # @my_group.delete(@group)
+    @group.delete
+    # @user_group = UserGroup.find_by(group_id: @group.id, user_id: current_user.id)
 
+
+    # @group.email.gsub!(/\"#{current_user.email}\"/, "")
+    # @user_group.delete
+
+
+
+    # raise
     redirect_to groups_path
   end
 

@@ -76,7 +76,7 @@
           </p>
           <p>
             <h6>
-          <%= link_to "Réutiliser", edit_group_path(group.id), class: "boutton-show-2", style: "padding:5px" %>
+          <%= link_to "Réutiliser", edit_group_path(group.id), class: "boutton-show-2", style: "padding:5px", data: { confirm: "Cette action supprimera les anciennes propositons du groupe ainsi que les votes. Seul les membres du groupe seront concervés Continuer?" } %>
             <br>
             <br>
             <%= link_to "Rejoindre", group_path(group.id), class: "boutton-show-2", style: "padding:5px" %>

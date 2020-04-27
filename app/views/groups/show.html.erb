@@ -122,8 +122,9 @@
            <h6><%= event_user.event.category %></h6>
            <span><%= event_user.event.address  %></span>
            <p><%= event_user.event.name %></p>
-           <% if event_user.user_id == current_user.id %>
-          <h6> <%= link_to "Modifier", new_group_event_user_path(@group), class: "details" %></h6>
+           <% if event_user.user_id == current_user.id && @group.votes.size == 0 %>
+
+          <h6> <%= link_to "Modifier", new_group_event_user_path(@group), method: :delete, class: "details" %></h6>
           <% end %>
           </div>
           <% if event_user.user.photo %>
@@ -137,7 +138,24 @@
           </p>
         </li>
           <% end %>
+          <% array_email = @group.email.split('"') %>
+
+          <% array_email.delete_at(0) %>
+          <% array_email.delete_at(-1) %>
+          <% array_email.delete('"') %>
+          <% array_email.delete(',') %>
+          <% all_email = [] %>
+          <% array_email.each_with_index do |email, i| %>
+            <% if i.even? || array_email.size == i+1 %>
+            <% all_email << email %>
+            <% end %>
+            <% end %>
+          <% if all_email.size >= @group.event_ids.size %>
           <% link_to "Va voter !", new_group_vote_path(@group), class: "boutton-show" %>
+          <% else %>
+           <p>En attente des autres propositions...</p>
+          <% end %>
+
       </div>
 
 <!--------------------- 01 PROPOSE UN EVENT --------------------------------->
@@ -163,7 +181,20 @@
 <!--------------------- 02 Va voter --------------------------------->
 
       <% elsif !current_user.voted?(@group) %>
-        <% if @group.waiting_for_events? %>
+<!----------- on détermine le nombre de personne a qui on a evoyé un email---->
+      <% array_email = @group.email.split('"') %>
+          <% array_email.delete_at(0) %>
+          <% array_email.delete_at(-1) %>
+          <% array_email.delete('"') %>
+          <% array_email.delete(',') %>
+          <% all_email = [] %>
+          <% array_email.each_with_index do |email, i| %>
+            <% if i.even? || array_email.size == i+1 %>
+            <% all_email << email %>
+            <% end %>
+            <% end %>
+<!----------- ---->
+        <% if all_email.size > @group.event_ids.size %>
           <p>En attente des autres propositions...</p>
         <% else %>
 

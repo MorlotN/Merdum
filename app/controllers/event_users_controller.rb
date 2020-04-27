@@ -39,4 +39,14 @@ end
     )
     redirect_to group_path(params[:group_id])
   end
+
+  def destroy
+    @group = EventUser.find_by(group_id: params[:group_id], user_id: current_user.id)
+    # @event = @group.event_id
+    # raise
+    @group.destroy
+    # raise
+
+    redirect_to groups_path
+  end
 end
