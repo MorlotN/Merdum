@@ -56,6 +56,10 @@
               <%= f.label "À quelle distance autour ?", class: 'form-control-label' %>
               <%= f.select :nearest, @nearest.each { |r| print r }, class: 'form-control-group', include_blank: true %>
             </div>
+            <div class="form">
+              <%= f.label "Envoyer des mails d'invitation au groupe ?", class: 'form-control-label' %>
+              <%= f.input_field :send_mail, as: :boolean, class: 'form-control-group' %>
+            </div>
 
             <%= f.submit "Valide ton groupe !", class: "boutton" %>
             <% end %>

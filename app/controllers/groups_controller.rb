@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:create, :index]
   before_action :find_group, only: [:show]
-  RESULT_ALL = Hash.new { |hash, key| hash[key] = 0 }
+
 
   def index
     @events = EventHome.new(cookies).result
@@ -31,6 +31,7 @@ end
   def show
     # probleme des votes = le hash @result_all qui doit contenir tout les resultats de votes pour chaque event en a qu'un seul
     # RESULT_ALL.nil? ? RESULT_ALL = {} : RESULT_ALL
+    result_all = Hash.new { |hash, key| hash[key] = 0 }
     cookies[:group] = params[:id]
     @group = Group.find(params[:id])
     @user_groups_members = UserGroup.where(group: @group)
@@ -38,7 +39,7 @@ end
      #      user_groups_member.user
     @members = @user_groups_members.map(&:user)
     @group.event_users.each_with_index do |event_user, index|
-      RESULT_ALL["#{event_user.event_id}"] = event_user.score
+      result_all["#{event_user.event_id}"] = event_user.score
 
 
       # p RESULT_ALL
@@ -46,7 +47,7 @@ end
     end
     # raise
     # p RESULT_ALL
-    @result_all = RESULT_ALL.max_by{|k,v| v}
+    @result_all = result_all.max_by{|k,v| v}
 
 #     if @result_all
 #       @win = Event.find_by(id: @result_all[0])
@@ -92,6 +93,7 @@ end
 
       @group.users << current_user
 
+        if @group.send_mail == true
       JSON.parse(@group.email).each do |email|
 
         # if email == current_user.email
@@ -101,6 +103,7 @@ end
         mail = UserMailer.with(email: email, group: @group).send_invitation
 
         mail.deliver_now
+      end
 
       end
 
@@ -147,9 +150,11 @@ end
     params["invit-email"].nil? ? emails = [] : emails = params["invit-email"]
     emails << params["group"]["email"]
           @group.users << current_user
+          if @group.send_mail == true
       JSON.parse(@group.email).each do |email|
         mail = UserMailer.with(email: email, group: @group).send_invitation
         mail.deliver_now
+      end
       end
     redirect_to group_path(@group)
   end
@@ -158,12 +163,16 @@ end
     @group = Group.find(params[:id])
     # @my_group = current_user.groups
     # @my_group.delete(@group)
-    @group.delete
-    # @user_group = UserGroup.find_by(group_id: @group.id, user_id: current_user.id)
+    @user_group = UserGroup.find_by(group_id: @group.id, user_id: current_user.id)
+    if @user_group
+      @user_group.delete
+    end
+    if @group
+      @group.delete
+    end
 
 
     # @group.email.gsub!(/\"#{current_user.email}\"/, "")
-    # @user_group.delete
 
 
 
@@ -181,6 +190,6 @@ end
   end
 
   def group_params
-    params.require(:group).permit(:name, :nearest, :date_event, :location, :email, :vote_duration, :proposition_duration)
+    params.require(:group).permit(:name, :nearest, :date_event, :location, :email, :vote_duration, :proposition_duration, :send_mail)
   end
 end
