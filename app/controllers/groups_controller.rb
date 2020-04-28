@@ -167,9 +167,9 @@ end
     if @user_group
       @user_group.delete
     end
-    if @group
-      @group.delete
-    end
+    # if @group
+    #   @group.delete
+    # end
 
 
     # @group.email.gsub!(/\"#{current_user.email}\"/, "")
