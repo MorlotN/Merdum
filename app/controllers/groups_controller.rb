@@ -93,7 +93,7 @@ end
 
       @group.users << current_user
 
-        if @group.send_mail == true
+        # if @group.send_mail == true
       JSON.parse(@group.email).each do |email|
 
         # if email == current_user.email
@@ -103,7 +103,7 @@ end
         mail = UserMailer.with(email: email, group: @group).send_invitation
 
         mail.deliver_now
-      end
+      # end
 
       end
 
