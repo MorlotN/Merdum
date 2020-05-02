@@ -92,6 +92,7 @@ end
     if @group.save
 
       @group.users << current_user
+      config.action_mailer.raise_delivery_errors = false
 
         # if @group.send_mail == true
       JSON.parse(@group.email).each do |email|
@@ -99,10 +100,12 @@ end
         # if email == current_user.email
 
         # else
+          if UserMailer.with(email: email, group: @group).send_invitation
 
         mail = UserMailer.with(email: email, group: @group).send_invitation
 
         mail.deliver_now
+      end
       # end
 
       end
