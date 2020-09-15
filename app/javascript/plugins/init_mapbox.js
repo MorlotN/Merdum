@@ -21,7 +21,9 @@ const initMapbox = () => {
           <h6 class="italic"> ${marker.address}</h6>
           <h5 class="tit">${marker.name}</h5>
           <p><a href=${marker.details} >
-           details </p>`)
+           details </p>
+           <button name="event_id" type="submit" value="${marker.id}" class="btn boutton-show-3">Proposer cet événement</button>
+           `)
         // .setContent(marker.photo_url)
 
 

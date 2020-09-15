@@ -225,6 +225,23 @@ a.details {
   }
 }
 
+.boutton-show-3{
+  font-family: $font;
+  font-size: 14px;
+  width: 185px;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  background-color: #03A9F4;
+  color: white;
+  transition: 0.3s;
+  &:hover{
+    background-color: #E91E63;
+    color: white;
+    text-decoration: none;
+  }
+}
+
 .boutton-show a {
   text-decoration: none;
 }

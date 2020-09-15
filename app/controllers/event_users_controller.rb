@@ -19,6 +19,7 @@ class EventUsersController < ApplicationController
       {
         lat: event.lat,
         lng: event.long,
+        id: event.id,
         name: event.name,
         address: event.address,
         category: event.category,
