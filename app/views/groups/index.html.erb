@@ -25,20 +25,20 @@
           <% end %>
           <!-- <div class="card-infos-show2"> -->
             <p>
-          <h4 style="margin-left: 10px; font-weight: bold; color: black;">
+          <h4 style="margin-left: 10px; font-weight: bold; color: #e4ecf1;">
            <%= group.name %>
           </h4>
           </p>
           <p>
-            <h6>
-         <strong> La dernière activité:</strong> <br><%= group.win %>
+            <h6 style="color: #e4ecf1">
+         <strong style=""> La dernière activité:</strong> <br><%= group.win %>
           <br>
           <br>
           <strong> Date </strong> <br> <%= group.date_event %>
           <% all_event = group.events  %>
           </h6>
           </p>
-          <p>
+          <p style="color: #e4ecf1">
           <strong> Les événements selectionné: </strong>
           <br>
           <% all_event.each_with_index do |event, i|  %>
@@ -51,7 +51,7 @@
           <% end %>
           </p>
           <p>
-            <h6>
+            <h6 style="color: #e4ecf1">
          <strong> Les membres du groupe: </strong>
           <br>
           <% array_email = group.email.split('"') %>
