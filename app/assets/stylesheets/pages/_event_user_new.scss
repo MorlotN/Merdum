@@ -30,7 +30,7 @@
  .filter-cat {
   position: sticky;
   top: 90px;
-  background: white;
+  background: #333333;
   z-index: 1000;
   margin-left: 15px;
   width: 98%;
@@ -100,13 +100,13 @@
 }
 
 #address-card {
-  color: black;
+  color: #e6dddd;
   margin-bottom: 10px;
   font-size: 15px;
 }
 
 #name-card {
-  color: #5C676D;
+  color: #e9ecef;
   text-align: left;
   font-size: 25px;
 
@@ -172,7 +172,7 @@
   right: -746px;
   border-radius: 8px;
   transition: 0.6s;
-  background-color: white;
+  background-color: #EAEAEA;
   opacity: 0.8;
   h6{
     text-align: center;
@@ -196,7 +196,7 @@
 }
 
 .details {
-  color: black;
+  color: #e6dddd;
   text-decoration: none;
 }
 
@@ -287,7 +287,7 @@ a.details {
   // flex-direction: column;
   position: sticky;
   top: 90px;
-  background: white;
+  background: #333333;
   z-index: 1000;
   width: 95%;
  }
@@ -362,13 +362,13 @@ a.details {
 }
 
 #address-card {
-  color: black;
+  color: #e6dddd;
   margin-bottom: 10px;
   font-size: 10px;
 }
 
 #name-card {
-  color: #5C676D;
+  color: #e9ecef;
   text-align: left;
   font-size: 15px;
 
@@ -429,7 +429,7 @@ a.details {
   right: -746px;
   border-radius: 8px;
   transition: 0.6s;
-  background-color: white;
+  background-color: #EAEAEA;
   opacity: 0.8;
   h6{
     text-align: center;
@@ -453,7 +453,7 @@ a.details {
 }
 
 .details {
-  color: black;
+  color: #e6dddd;
   text-decoration: none;
 }
 
