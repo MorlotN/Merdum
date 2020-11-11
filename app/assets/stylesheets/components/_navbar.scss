@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #2F2E41;
   position: sticky;
   top: 0px;
   height: 90px;
@@ -21,7 +21,7 @@
     font-size: 20px;
     font-family: $font;
     font-weight: 100;
-    color: #424e54;
+    color: #e4ecf1;
   }
 }
 
@@ -44,7 +44,7 @@
     transition: 0.3s;
     border-radius: 5px;
     // color: #5C676D;
-    background-color: #FFFFFF;
+    background-color: #2F2E41;
     padding: 8px 20px;
     border: 1px solid #5C676D;
   &:hover{
@@ -57,5 +57,5 @@
 a.onglet-groupe {
 
   text-decoration: none;
-  color: black;
+  color: #e4ecf1;
 }

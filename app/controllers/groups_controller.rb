@@ -76,6 +76,12 @@ end
     # emails = []
     cookies[:nearest] = params[:nearest]
     params[:nearest] = cookies[:nearest]
+    if params["invit-email"].nil? && params["group"]["email"] == ""
+      # flash.now[:alert] = 'Error while sending message!'
+
+      redirect_back fallback_location: "http://merdum.herokuapp.com/groups/new"
+
+    else
     params["invit-email"].nil? ? emails = [] : emails = params["invit-email"]
     emails << params["group"]["email"]
     # emails = emails.map(&:inspect).join(', ').to_a
@@ -113,11 +119,12 @@ end
       # end
 
         # @group.email.insert(-2, ", \"#{current_user.email}\"")
-        # raise
+
       redirect_to group_path(@group)
 
     else
       render :new
+    end
     end
   end
 

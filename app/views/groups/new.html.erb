@@ -6,7 +6,7 @@
     <div class="responsive-valeur">
 
       <h1>Qu'est-ce qu'on Fest ?</h1>
-      <p class="text-center">Invite tes ami(e)s à sortir de leurs zone de confort !</p>
+      <p class="text-center" style="color:#e4ecf1">Invite tes ami(e)s à sortir de leurs zone de confort !</p>
       <%#= image_tag "undraw_friends_online_klj6.svg", style:'margin-left: 50px; width: 100%' %>
     </div>
 
@@ -64,13 +64,16 @@
             </div>
              -->
            <div class="form">
-              <%= f.label "Ajoute tes amis !", class: 'form-control-label' %>
+              <%= f.label "Ajoute tes amis !    (ne fonctionne pas sans amis)  :'( ", class: 'form-control-label' %>
               <%= f.input_field :email, class: 'form-control-group', placeholder: "Ex : benjamin.prejent@gmail.com" %>
               <div class="email">
                 <a  id="add-friend-input" ><i class="fas fa-plus-circle"></i></a>
               </div>
             </div>
-            <%= f.submit "Valide ton groupe !", class: "boutton" %>
+
+
+            <%= f.submit "Valide ton groupe !", class: "boutton"%>
+
             <% end %>
         </div>
   </div>
